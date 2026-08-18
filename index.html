@@ -422,7 +422,11 @@ function fail(msg) {
 
 (async () => {
   try {
-    const app = initializeApp(firebaseConfig);
+    // Give the loader's app its OWN name. The game calls initializeApp() again
+    // with a fuller config, and Firebase throws 'duplicate-app' when the same
+    // (default) name is reused with different options - which the game catches
+    // and reports as OFFLINE MODE.
+    const app = initializeApp(firebaseConfig, "loader");
     // App Check attests the request really comes from your site, not a copy or a
     // script. The Function rejects anything without a valid token.
     const appCheck = initializeAppCheck(app, {
