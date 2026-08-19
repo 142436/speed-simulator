@@ -230,6 +230,21 @@
                 </div>
             </div>
 
+            <!-- pinned just below the FLOW combo with inline styles. The bottom of the
+                 screen belongs to the stamina bars, and top-centre to the combo readout -->
+            <div id="tutorialBox" class="flex flex-col items-center pointer-events-auto"
+                 style="display:none; position:absolute; left:50%; transform:translateX(-50%); top:104px; z-index:40;">
+                <div class="hud-glass rounded-xl px-6 py-3 border border-cyan-400/60 text-center" style="min-width:260px;">
+                    <div id="tutStep" class="text-[10px] font-black uppercase tracking-widest text-cyan-400/70"></div>
+                    <div id="tutHint" class="text-2xl font-black tracking-widest text-white text-glow"></div>
+                    <div id="tutKeys" class="text-xs font-bold text-gray-400 mt-1"></div>
+                    <div class="h-1.5 w-full bg-black/80 rounded-full mt-3 overflow-hidden border border-cyan-800/60">
+                        <div id="tutFill" class="h-full" style="width:0%; background:#00ffcc; box-shadow:0 0 12px #00ffcc;"></div>
+                    </div>
+                    <button onclick="window.skipTutorial()" class="mt-3 text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition">Skip tutorial</button>
+                </div>
+            </div>
+
             <div id="jackpotWatch" class="absolute top-28 left-1/2 transform -translate-x-1/2 flex flex-col items-center" style="display:none;">
                 <div class="text-4xl font-black tracking-[0.3em] text-glow" id="jackpotReels" style="color:#ffd21e;">7 7 7</div>
                 <div class="text-xs font-black uppercase tracking-widest mt-1" id="jackpotTimer" style="color:#ff2bd0;">HOLD 60s</div>
@@ -422,10 +437,9 @@ function fail(msg) {
 
 (async () => {
   try {
-    // Give the loader's app its OWN name. The game calls initializeApp() again
-    // with a fuller config, and Firebase throws 'duplicate-app' when the same
-    // (default) name is reused with different options - which the game catches
-    // and reports as OFFLINE MODE.
+    // Name this app 'loader'. The game calls initializeApp() again with a fuller
+    // config, and Firebase throws 'duplicate-app' if the default name is reused
+    // with different options - which the game catches and reports as OFFLINE MODE.
     const app = initializeApp(firebaseConfig, "loader");
     // App Check attests the request really comes from your site, not a copy or a
     // script. The Function rejects anything without a valid token.
