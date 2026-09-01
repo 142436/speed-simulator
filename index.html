@@ -232,6 +232,25 @@
 
             <!-- pinned just below the FLOW combo with inline styles. The bottom of the
                  screen belongs to the stamina bars, and top-centre to the combo readout -->
+            <div id="shinobiBar" class="absolute bottom-24 left-1/2 transform -translate-x-1/2 pointer-events-auto" style="display:none;">
+                <button id="shinobiBtn" onclick="window.toggleShinobi()"
+                        class="px-5 py-2 rounded-lg font-black uppercase tracking-widest text-xs text-white"
+                        style="background:rgba(0,0,0,0.7); border:2px solid #ff8a1f; box-shadow:0 0 16px #ff8a1f;">
+                    RELEASE CLOAK  [T]
+                </button>
+            </div>
+
+            <!-- inline positioning: critical layout must not depend on the Tailwind
+                 CDN loading, same reason the tutorial box uses inline styles -->
+            <div id="birthdayBanner" class="pointer-events-none"
+                 style="display:none; position:absolute; inset:0; flex-direction:column;
+                        align-items:center; justify-content:center; text-align:center;
+                        transition:opacity 1s; z-index:60;">
+                <div style="color:#ffd700; font-size:64px; font-weight:900; letter-spacing:6px; text-shadow:0 0 24px #ffd700;">HAPPY BIRTHDAY</div>
+                <div style="color:#ff8a1f; font-size:20px; font-weight:900; letter-spacing:4px; margin-top:12px;">A CHASSIS BUILT ONLY FOR YOU</div>
+                <div style="color:#cccccc; font-size:12px; font-weight:700; letter-spacing:3px; margin-top:24px;">PRESS T TO TRANSFORM &nbsp;&bull;&nbsp; C FOR THE ADMIN PANEL</div>
+            </div>
+
             <div id="tutorialBox" class="flex flex-col items-center pointer-events-auto"
                  style="display:none; position:absolute; left:50%; transform:translateX(-50%); top:104px; z-index:40;">
                 <div class="hud-glass rounded-xl px-6 py-3 border border-cyan-400/60 text-center" style="min-width:260px;">
